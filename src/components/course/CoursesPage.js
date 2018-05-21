@@ -19,7 +19,6 @@ class CoursePage extends React.Component{
   }*/
 
   deleteCourse(courseId){
-    //const mockCourseId = "react-flux-building-applications";
     this.props.actions.deleteCourse(courseId);
     toastr.success(`course ${courseId} has been eliminate`);
   }
