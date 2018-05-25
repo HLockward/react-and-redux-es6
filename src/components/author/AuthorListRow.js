@@ -18,6 +18,6 @@ const AuthorListRow = ({author}) => {
 
 AuthorListRow.propTypes = {
   author: PropTypes.object.isRequired
-}
+};
 
 export default AuthorListRow;
