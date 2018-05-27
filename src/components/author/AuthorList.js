@@ -6,10 +6,10 @@ const AuthorList = ({authors}) => {
     <table className="table">
       <thead>
         <tr>
-          <th>&nbsp;</th>
           <th>Id</th>
           <th>Name</th>
           <th>Lastname</th>
+          <th>&nbsp;</th>
         </tr>
       </thead>
       <tbody>

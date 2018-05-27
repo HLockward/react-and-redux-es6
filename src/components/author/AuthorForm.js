@@ -6,18 +6,18 @@ const AuthorForm = ({author, onSave, onChange, saving, errors}) => {
     <form>
       <h1>Author Manager</h1>
       <TextInput
-        name="name"
+        name="firstName"
         label="Name"
         value={author.firstName}
         onChange={onChange}
-        error={errors.name}/>
+        error={errors.firstName}/>
 
       <TextInput
-        name="lastname"
-        label="Lastname"
+        name="lastName"
+        label="LastName"
         value={author.lastName}
         onChange={onChange}
-        error={errors.lastname}/>
+        error={errors.lastName}/>
 
       <input
         type="submit"
@@ -32,8 +32,10 @@ const AuthorForm = ({author, onSave, onChange, saving, errors}) => {
 
 AuthorForm.propTypes = {
   author: PropTypes.object.isRequired,
-  onSave: PropTypes.func.isRequired,
+  onSave: PropTypes.func,
   saving: PropTypes.bool,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   errors: PropTypes.object
 };
+
+export default AuthorForm;
