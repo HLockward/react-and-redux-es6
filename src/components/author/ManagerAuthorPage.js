@@ -17,6 +17,12 @@ class ManagerAuthorPage extends React.Component{
     this.saveAuthor = this.saveAuthor.bind(this);
   }
 
+  componentWillReceiveProps(nextProps){
+    if(this.props.author.id != nextProps.author.id){
+      this.setState({author: Object.assign({},nextProps.author)});
+    }
+  }
+
   updateAuthorState(event){
     const fiel = event.target.name;
     let author = Object.assign({},this.state.author);
@@ -48,10 +54,21 @@ ManagerAuthorPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state){
-  //const author = state.authors.filter (author => author)
+function getAuthorById(authors,id){
+  const author = authors.filter (author => author.id === id);
+  let result = author.length ? author[0] : null;
+  return result;
+}
+
+function mapStateToProps(state, ownProps){
+  const authorId = ownProps.params.id;
 
   let author = {id:"", firstName: "", lastName: ""};
+
+  if(authorId && state.authors.length > 0){
+     author =  getAuthorById(state.authors,authorId);
+  }
+
   return{
     author: author
   };
