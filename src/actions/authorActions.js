@@ -14,6 +14,10 @@ export function updateAuthorSuccess(author){
   return {type: types.UPDATE_AUTHOR_SUCCESS,author};
 }
 
+export function deleteAuthorSuccess(authorId){
+  return {type: types.DELETE_AUTHOR_SUCCESS, authorId};
+}
+
 export function loadAuthors(){
   return dispatch => {
     dispatch(beginAjaxCall());
@@ -35,6 +39,16 @@ export function saveAuthor(author){
         dispatch(createAuthorSuccess(author));
       }
     }).catch(error => {
+      throw(error);
+    });
+  };
+}
+
+export function deleteAuthor(authorId){
+  return dispatch => {
+    return AuthorApi.deleteAuthor(authorId).then(deleteAuthor =>
+      dispatch(deleteAuthorSuccess(authorId))
+    ).catch(error => {
       throw(error);
     });
   };

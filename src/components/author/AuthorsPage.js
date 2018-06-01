@@ -4,10 +4,20 @@ import {bindActionCreators} from 'redux';
 import * as authorActions from '../../actions/authorActions';
 import AuthorList from './AuthorList';
 import {browserHistory} from 'react-router';
+import toastr from 'toastr';
 
 class AuthorsPage extends React.Component{
   constructor(props, context){
     super(props, context);
+
+    this.deleteAuthor = this.deleteAuthor.bind(this);
+  }
+
+
+
+  deleteAuthor(authorId){
+    this.props.actions.deleteAuthor(authorId);
+    toastr.success(`Author ${authorId} has been eliminate`);
   }
 
   redirectToAddAuthor(){
@@ -24,7 +34,7 @@ class AuthorsPage extends React.Component{
           value = "Add Author"
           onClick = {this.redirectToAddAuthor}
         />
-        <AuthorList authors={this.props.authors}/>
+        <AuthorList authors={this.props.authors} onDelete={this.deleteAuthor}/>
       </div>
     );
   }
