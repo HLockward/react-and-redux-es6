@@ -13,11 +13,19 @@ class AuthorsPage extends React.Component{
     this.deleteAuthor = this.deleteAuthor.bind(this);
   }
 
-
+  getCourses(authorId){
+    const courses = this.props.courses;
+    return courses.filter(course => course.authorId === authorId);
+  }
 
   deleteAuthor(authorId){
-    this.props.actions.deleteAuthor(authorId);
-    toastr.success(`Author ${authorId} has been eliminate`);
+    const courses = this.getCourses(authorId);
+    if(courses.length){
+      toastr.error(`can't delete author ${authorId}, has courses`);
+    }else{
+      this.props.actions.deleteAuthor(authorId);
+      toastr.success(`Author ${authorId} has been eliminate`);
+    }
   }
 
   redirectToAddAuthor(){
@@ -44,12 +52,14 @@ class AuthorsPage extends React.Component{
 
 AuthorsPage.propTypes = {
   authors: PropTypes.array.isRequired,
+  courses: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps){
   return{
-    authors : state.authors
+    authors : state.authors,
+    courses: state.courses
   };
 }
 
