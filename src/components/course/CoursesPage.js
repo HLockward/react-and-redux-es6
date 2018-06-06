@@ -14,10 +14,6 @@ class CoursePage extends React.Component{
     this.deleteCourse = this.deleteCourse.bind(this);
   }
 
- /* courseRow(course, index){
-    return <div key={index}>{course.title}</div>;
-  }*/
-
   deleteCourse(courseId){
     this.props.actions.deleteCourse(courseId);
     toastr.success(`course ${courseId} has been eliminate`);
@@ -38,7 +34,7 @@ class CoursePage extends React.Component{
           className="btn btn-primary"
           onClick={this.redirectToAddCourse}
         />
-        <CourseList courses={courses} onDelete = {this.deleteCourse} />
+        {(courses.length > 0) && <CourseList courses={courses} onDelete = {this.deleteCourse} />}
       </div>
     );
   }
