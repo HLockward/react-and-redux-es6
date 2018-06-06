@@ -3,7 +3,9 @@ import {Link} from 'react-router';
 
 const CourseListRow = ({course, onDelete}) => {
 
-  const _onDelete = () => onDelete(course.id);
+  const _onDelete = () =>{
+    onDelete(course.id);
+  };
 
   return (
     <tr>
