@@ -3,6 +3,8 @@ import {Link} from 'react-router';
 
 const AuthorListRow = ({author, onDelete}) => {
 
+  const _onClick = () => onDelete(author.id);
+
   return (
     <tr>
       <td><Link to = {`/author/${author.id}`}>{author.id}</Link></td>
@@ -13,7 +15,7 @@ const AuthorListRow = ({author, onDelete}) => {
           type="submit"
           value="Delete"
           className="btn btn-danger"
-          onClick={()=> onDelete(author.id)}/>
+          onClick={_onClick}/>
       </td>
     </tr>
   );

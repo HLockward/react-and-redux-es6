@@ -2,6 +2,9 @@ import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
 const CourseListRow = ({course, onDelete}) => {
+
+  const _onDelete = () => onDelete(course.id);
+
   return (
     <tr>
       <td><a href={course.WatchHref} target="_blank">Watch</a></td>
@@ -14,7 +17,7 @@ const CourseListRow = ({course, onDelete}) => {
           type="submit"
           value="Delete"
           className="btn btn-danger"
-          onClick = {() => onDelete(course.id)}/>
+          onClick = {_onDelete}/>
       </td>
     </tr>
   );
