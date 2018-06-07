@@ -33,6 +33,7 @@ class AuthorsPage extends React.Component{
   }
 
   render() {
+    const {authors} = this.props;
     return(
       <div>
         <h1>Authors Page</h1>
@@ -42,7 +43,7 @@ class AuthorsPage extends React.Component{
           value = "Add Author"
           onClick = {this.redirectToAddAuthor}
         />
-        <AuthorList authors={this.props.authors} onDelete={this.deleteAuthor}/>
+        {(authors.length > 0) && <AuthorList authors={authors} onDelete={this.deleteAuthor}/>}
       </div>
     );
   }
