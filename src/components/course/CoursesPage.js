@@ -5,6 +5,7 @@ import * as courseActions from '../../actions/courseActions';
 import CourseList from './CourseList';
 import {browserHistory} from 'react-router';
 import toastr from 'toastr';
+import {sortByKey} from '../common/CommonFunctions';
 
 class CoursePage extends React.Component{
   constructor(props, context){
@@ -47,8 +48,10 @@ CoursePage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps){
+  const courses = sortByKey(state.courses,'title');
+
   return {
-    courses: state.courses
+    courses: courses
   };
 }
 
