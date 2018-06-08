@@ -5,6 +5,7 @@ import * as authorActions from '../../actions/authorActions';
 import AuthorList from './AuthorList';
 import {browserHistory} from 'react-router';
 import toastr from 'toastr';
+import {sortByKey} from '../common/CommonFunctions';
 
 class AuthorsPage extends React.Component{
   constructor(props, context){
@@ -58,8 +59,10 @@ AuthorsPage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps){
+  const authors = sortByKey(state.authors,'firstName');
+
   return{
-    authors : state.authors,
+    authors : authors,
     courses: state.courses
   };
 }
